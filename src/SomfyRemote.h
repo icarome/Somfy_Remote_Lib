@@ -22,7 +22,7 @@ private:
 	uint32_t remote;
 	RollingCodeStorage *const rollingCodeStorage;
 
-	void buildFrame(byte *frame, Command command, uint16_t code);
+	void buildFrame(byte *frame, Command command, uint16_t code, uint32_t remoteid);
 	void sendFrame(byte *frame, byte sync);
 	void printFrame(byte *frame);
 
@@ -39,7 +39,7 @@ public:
 	 * @param repeat the number how often the command should be repeated, default 4. Should
 	 * 				 only be used when simulating holding a button.
 	 */
-	void sendCommand(Command command, int repeat = 4);
+	void sendCommand(Command command, uint32_t remoteid, uint16_t rollingCode, int repeat = 4);
 };
 
 Command getSomfyCommand(const String &string);
