@@ -2,8 +2,6 @@
 
 #include <Arduino.h>
 
-#include "RollingCodeStorage.h"
-
 enum class Command : byte {
 	My = 0x1,
 	Up = 0x2,
@@ -20,7 +18,6 @@ class SomfyRemote {
 private:
 	byte emitterPin;
 	uint32_t remote;
-	RollingCodeStorage *const rollingCodeStorage;
 
 	void buildFrame(byte *frame, Command command, uint16_t code, uint32_t remoteid);
 	void sendFrame(byte *frame, byte sync);
@@ -30,7 +27,7 @@ private:
 	void sendLow(uint16_t durationInMicroseconds);
 
 public:
-	SomfyRemote(byte emitterPin, uint32_t remote, RollingCodeStorage *rollingCodeStorage);
+	SomfyRemote(byte emitterPin, uint32_t remote);
 	void setup();
 	/**
 	 * Send a command with this SomfyRemote.

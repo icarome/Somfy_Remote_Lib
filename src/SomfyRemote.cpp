@@ -2,8 +2,8 @@
 
 #define SYMBOL 640
 
-SomfyRemote::SomfyRemote(byte emitterPin, uint32_t remote, RollingCodeStorage *rollingCodeStorage)
-	: emitterPin(emitterPin), remote(remote), rollingCodeStorage(rollingCodeStorage) {}
+SomfyRemote::SomfyRemote(byte emitterPin, uint32_t remote)
+	: emitterPin(emitterPin), remote(remote) {}
 
 void SomfyRemote::setup() {
 	pinMode(2, OUTPUT);
@@ -54,8 +54,8 @@ void SomfyRemote::buildFrame(byte *frame, Command command, uint16_t code, uint32
 	for (byte i = 1; i < 7; i++) {
 		frame[i] ^= frame[i - 1];
 	}
-	Serial.print("Obfuscated    : ");
-	printFrame(frame);
+	// Serial.print("Obfuscated    : ");
+	// printFrame(frame);
 }
 
 void SomfyRemote::sendFrame(byte *frame, byte sync) {
